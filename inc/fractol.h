@@ -18,6 +18,13 @@
 # include "libft.h"
 # include <mlx.h>
 # include <math.h>
+#include <stdlib.h>
+
+# define TITLE "Fractol"
+# define WIDTH 1920
+# define HEIGHT 1080
+# define MENU_WIDTH 300
+# define ZOOM 40
 
 typedef struct	s_fdf {
 	int			**map;
@@ -36,10 +43,10 @@ typedef struct	s_fdf {
 	int			bits_per_pixel;
 	int			size_line;
 	int			endian;
-
 }				t_fdf;
 
+int				ft_fractol1(char *name);
 
-int			fractol(char *argv);
+void			ft_printerror_mlx(t_fdf *f);
 
 #endif

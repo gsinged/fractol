@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printerror.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsinged <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/25 20:32:03 by gsinged           #+#    #+#             */
-/*   Updated: 2020/11/25 20:32:04 by gsinged          ###   ########.fr       */
+/*   Created: 2020/11/25 22:32:12 by gsinged           #+#    #+#             */
+/*   Updated: 2020/11/25 22:32:14 by gsinged          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int			print_usage(void)
+void	ft_printerror_mlx(t_fdf *f)
 {
-	ft_putendl("usage: ./fractol [Name]");
-	ft_putendl("Name:\tJulia\n\tMandelbrot\n");
-	return (0);
+//	ft_free_f(f);
+	f = NULL;
+	ft_putendl_fd("MLX error", 2);
+	exit(0);
 }
 
-int			main(int argc, char **argv)
-{
-	if (argc != 2)
-		return (print_usage());
-//	*argv[0]= '\0';
-	ft_fractol1(argv[1]);
-	return (0);
-}
+

@@ -16,7 +16,6 @@ CC = gcc
 FLAGS = -Wall -Werror -Wextra -O3
 INCLUDES = -I$(INCDIR) -I$(FTDIR)/inc/ -I$(FTDIR)/ft_printf/inc/ -I$(MINILIBX_H)
 LIBRARIES = -lmlx -lm -lft -L$(FTDIR) -L$(MINILIBX_DIR) -framework OpenGL -framework AppKit
-#LIBRARIES = -lmlx -lm -lft -L$(LIBFT_DIR) -L$(MINILIBX_DIR) -framework OpenGL -framework AppKit
 
 
 SRCDIR  = ./src/
@@ -28,7 +27,7 @@ FTNAME = libft.a
 
 INC = fractol.h
 
-SRC =	main.c
+SRC =	main.c ft_printerror.c
 
 OBJ	= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
