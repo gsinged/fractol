@@ -19,12 +19,14 @@
 # define KEY_RIGHT 124
 # define KEY_MINUS 27
 # define KEY_PLUS 24
+# define KEY_C 8
 # define KEY_I 34
 # define KEY_ESC 53
 # define KEY_P 35
 
 # define MOUSE_1 1
 # define MOUSE_2 2
+# define MOUSE_3 3
 # define MOUSE_UP 4
 # define MOUSE_DOWN 5
 # define MOUSE_LEFT 6

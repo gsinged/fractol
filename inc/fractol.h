@@ -63,6 +63,8 @@ typedef struct	s_fractol {
 
 int				ft_fractol(char *name);
 t_complex		init_complex(double re, double im);
+void			init_init(t_fractol *f);
+void			draw_map(t_fractol *f);
 
 int 			fract_julia(t_fractol *f);
 int 			fract_mandelbrot(t_fractol *f);

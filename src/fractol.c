@@ -57,6 +57,7 @@ int				ft_fractol(char *name)
 	if (!(f = ft_fractol_new()))
 		print_error();
 	init_fractol(f, name);
+	init_init(f);
 	draw(f);
 	mlx_loop(f->mlx_ptr);
 	return (0);

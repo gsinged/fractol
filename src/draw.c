@@ -82,7 +82,7 @@ void			draw_map(t_fractol *f)
 
 void			draw(t_fractol *f)
 {
-	init_init(f);
+
 	draw_map(f);
 	mlx_put_image_to_window(f->mlx_ptr, f->win_ptr, f->img_ptr, 0, 0);
 	control_keys(f);
