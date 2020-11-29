@@ -16,9 +16,11 @@
 # define FRACTOL_H
 
 # include "libft.h"
+# include "keys.h"
 # include <mlx.h>
 # include <math.h>
-#include <stdlib.h>
+# include <stdlib.h>
+# include <errno.h>
 
 # define TITLE "Fractol"
 # define WIDTH 1920
@@ -26,10 +28,11 @@
 # define MENU_WIDTH 300
 # define ZOOM 40
 
-typedef struct	s_fdf {
+typedef struct	s_fractol {
 	int			**map;
 	int			height;
 	int			width;
+	char		*name;
 	int			zoom;
 	int			x_shift;
 	int			y_shift;
@@ -43,10 +46,16 @@ typedef struct	s_fdf {
 	int			bits_per_pixel;
 	int			size_line;
 	int			endian;
-}				t_fdf;
+	void		(*fractal)(struct s_fractol *f);
+}				t_fractol;
 
-int				ft_fractol1(char *name);
+int				ft_fractol(char *name);
 
-void			ft_printerror_mlx(t_fdf *f);
+void			fract_julia(t_fractol *f);
+void			fract_mandelbrot(t_fractol *f);
+
+void			ft_printerror_mlx(t_fractol *f);
+void			print_error(void);
+
 
 #endif

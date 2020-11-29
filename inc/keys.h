@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printerror.c                                    :+:      :+:    :+:   */
+/*   keys.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsinged <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/25 22:32:12 by gsinged           #+#    #+#             */
-/*   Updated: 2020/11/25 22:32:14 by gsinged          ###   ########.fr       */
+/*   Created: 2020/11/29 03:01:08 by gsinged           #+#    #+#             */
+/*   Updated: 2020/11/29 03:01:10 by gsinged          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#ifndef KEYS_H
+# define KEYS_H
 
-void			ft_printerror_mlx(t_fractol *f)
-{
-//	ft_free_f(f);
-	f = NULL;
-	ft_putendl_fd("MLX error", 2);
-	exit(0);
-}
+# define KEY_UP 126
+# define KEY_DOWN 125
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
+# define KEY_MINUS 27
+# define KEY_PLUS 24
+# define KEY_I 34
+# define KEY_ESC 53
+# define KEY_P 35
 
-void			print_error(void)
-{
-	ft_putendl_fd(strerror(errno), 2);
-	exit(0);
-}
+# define MOUSE_1 1
+# define MOUSE_2 2
+# define MOUSE_UP 4
+# define MOUSE_DOWN 5
+# define MOUSE_LEFT 6
+# define MOUSE_RIGHT 7
 
+#endif

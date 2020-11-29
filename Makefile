@@ -25,11 +25,13 @@ FTDIR   = ./libft/
 
 FTNAME = libft.a
 
-INC = fractol.h
+INC = fractol.h keys.h
 
-SRC =	main.c ft_printerror.c
+SRC =	main.c ft_printerror.c fractol.c fractals.c draw.c control_keys.c
 
 OBJ	= $(addprefix $(OBJDIR),$(SRC:.c=.o))
+
+INC_H = $(addprefix $(INCDIR),$(INC))
 
 LIBFT = $(FTDIR)$(FTNAME)
 
@@ -47,24 +49,24 @@ $(NAME): $(LIBFT) $(MINILIBX) $(OBJ)
 	$(CC) $(OBJ) $(LIBRARIES) -o $(NAME)
 
 $(LIBFT):
-	@make -C $(FTDIR)
+	make -C $(FTDIR)
 
 $(MINILIBX):
-	@make -sC $(MINILIBX_DIR)
+	make -sC $(MINILIBX_DIR)
 
 $(OBJDIR):
-	@mkdir -p $(OBJDIR)
+	mkdir -p $(OBJDIR)
 
-$(OBJDIR)%.o: $(SRCDIR)%.c $(INCDIR)$(INC) | $(OBJDIR)
+$(OBJDIR)%.o: $(SRCDIR)%.c $(INC_H) | $(OBJDIR)
 	$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
 
 clean:
-	@make -sC $(FTDIR) clean
-	@make -sC $(MINILIBX_DIR) clean
-	@rm -rf $(OBJDIR)
+	make -sC $(FTDIR) clean
+	make -sC $(MINILIBX_DIR) clean
+	rm -rf $(OBJDIR)
 
 fclean: clean
-	@make -sC $(FTDIR) fclean
-	@rm -f $(NAME)
+	make -sC $(FTDIR) fclean
+	rm -f $(NAME)
 
 re: fclean all
