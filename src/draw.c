@@ -37,17 +37,23 @@ void	draw_point(t_fractol *f, int x, int y, int iter)
 	int		i;
 	double	t;
 
-	t = iter / f->max_iter;
+	t = (double)iter / (double)f->max_iter;
 	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
 	{
 		i = (x * f->bits_per_pixel / 8) + (y * f->size_line);
-//		f->data_addr[i] = (int)(9 * (1 - t) * pow(t, 3) * 255);
-//		f->data_addr[++i] = (int)(15 * pow((1 - t), 2) * pow(t, 2)  * 255);
-//		f->data_addr[++i] = (int)(8.5 * pow((1-t), 3) * t * 255);
+		f->data_addr[i] = (int)(8.5 * pow((1-t), 3) * t * 255);
+		f->data_addr[++i] = (int)(15 * pow((1 - t), 2) * pow(t, 2)  * 255);
+		f->data_addr[++i] = (int)(9 * (1 - t) * pow(t, 3) * 255);
+		f->data_addr[++i] = 0;
 
-		f->data_addr[i] = 0xffffff;
-		f->data_addr[++i] = 0xffffff;
-		f->data_addr[++i] = 0xffffff;
+
+//		int color;
+//
+//		color = 0xffffff;
+//
+//		f->data_addr[i] = color;
+//		f->data_addr[++i] = color >> 8;
+//		f->data_addr[++i] = color >> 16;
 	}
 }
 

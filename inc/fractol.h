@@ -23,8 +23,8 @@
 # include <errno.h>
 
 # define TITLE "Fractol"
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1000
+# define HEIGHT 1000
 # define MENU_WIDTH 300
 # define ZOOM 40
 # define ITER 50
@@ -55,7 +55,6 @@ typedef struct	s_fractol {
 	t_complex	min;
 	t_complex	max;
 	t_complex	c;
-	t_complex	z;
 	t_complex	k;
 	t_complex	fact;
 	int			max_iter;
