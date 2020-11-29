@@ -27,9 +27,15 @@
 # define HEIGHT 1080
 # define MENU_WIDTH 300
 # define ZOOM 40
+# define ITER 50
+
+typedef struct	s_complex
+{
+	double		re;
+	double		im;
+}				t_complex;
 
 typedef struct	s_fractol {
-	int			**map;
 	int			height;
 	int			width;
 	char		*name;
@@ -46,13 +52,24 @@ typedef struct	s_fractol {
 	int			bits_per_pixel;
 	int			size_line;
 	int			endian;
-	void		(*fractal)(struct s_fractol *f);
+	t_complex	min;
+	t_complex	max;
+	t_complex	c;
+	t_complex	z;
+	t_complex	k;
+	t_complex	fact;
+	int			max_iter;
+	int 		(*fractal)(struct s_fractol *f);
 }				t_fractol;
 
 int				ft_fractol(char *name);
+t_complex		init_complex(double re, double im);
 
-void			fract_julia(t_fractol *f);
-void			fract_mandelbrot(t_fractol *f);
+int 			fract_julia(t_fractol *f);
+int 			fract_mandelbrot(t_fractol *f);
+
+void			draw(t_fractol *f);
+void			control_keys(t_fractol *f);
 
 void			ft_printerror_mlx(t_fractol *f);
 void			print_error(void);

@@ -34,7 +34,6 @@ int			main(int argc, char **argv)
 		return (print_usage());
 	if (!(check_name_main(argv[1])))
 		return (print_usage());
-//	*argv[0]= '\0';
 	ft_fractol(argv[1]);
 	return (0);
 }
