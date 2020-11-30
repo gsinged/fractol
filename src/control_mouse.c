@@ -18,7 +18,7 @@ int			motion_hook(int x, int y, t_fractol *f)
 	t_complex	c_prev;
 
 	ft_printf("x = %d, y = %d\n", x, y);
-	if (f->julia)
+	if (f->julia == 1)
 	{
 		f->k.im = f->max.im - y * f->fact.im;
 		f->k.re = f->min.re + x * f->fact.re;
@@ -69,6 +69,19 @@ void			zoom(int mouse, int x, int y, t_fractol *f)
 //{
 //
 //}
+
+int			deal_mouse(int mouse, int x, int y, t_fractol *f)
+{
+	if (mouse == MOUSE_2)
+	{
+		if (f->julia == 1)
+			f->julia = 2;
+		else if (f->julia == 2)
+			f->julia = 1;
+	}
+	x = y;
+	return (0);
+}
 
 int			mouse_press(int mouse, int x, int y, t_fractol *f)
 {

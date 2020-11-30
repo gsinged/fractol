@@ -88,5 +88,6 @@ void		control_keys(t_fractol *f)
 	mlx_hook(f->win_ptr, 6, 0, motion_hook, f);
 	mlx_hook(f->win_ptr, 17, 0, exit_hook, f);
 	mlx_key_hook(f->win_ptr, deal_key, f);
+//	mlx_mouse_hook(f->win_ptr, deal_mouse, f);
 }
 

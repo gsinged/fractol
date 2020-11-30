@@ -80,6 +80,7 @@ int 			fract_mandelbrot(t_fractol *f);
 
 void			draw(t_fractol *f);
 void			control_keys(t_fractol *f);
+int				deal_mouse(int mouse, int x, int y, t_fractol *f);
 int				mouse_press(int mouse, int x, int y, t_fractol *f);
 int				mouse_release_hook(int mouse, int x, int y, t_fractol *f);
 int				motion_hook(int x, int y, t_fractol *f);
