@@ -70,16 +70,23 @@ int				press_key(int key, t_fractol *f)
 }
 
 
-int			mouse_press(int mouse, int x, int y, t_fractol *f)
+
+int			exit_hook(t_fractol *f)
 {
-	
+	f->iso = 0;
+	exit(0);
 	return (0);
 }
+
+
 
 void		control_keys(t_fractol *f)
 {
 	mlx_hook(f->win_ptr, 2, 0, press_key, f);
 	mlx_hook(f->win_ptr, 4, 0, mouse_press, f);
+	mlx_hook(f->win_ptr, 5, 0, mouse_release_hook, f);
+	mlx_hook(f->win_ptr, 6, 0, motion_hook, f);
+	mlx_hook(f->win_ptr, 17, 0, exit_hook, f);
 	mlx_key_hook(f->win_ptr, deal_key, f);
 }
 

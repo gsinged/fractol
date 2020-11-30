@@ -27,7 +27,8 @@ FTNAME = libft.a
 
 INC = fractol.h keys.h
 
-SRC =	main.c ft_printerror.c fractol.c fractals.c draw.c control_keys.c
+SRC =	main.c ft_printerror.c fractol.c fractals.c draw.c control_keys.c \
+		control_mouse.c
 
 OBJ	= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 

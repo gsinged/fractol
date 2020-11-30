@@ -26,10 +26,10 @@ void			init_init(t_fractol *f)
 	f->min = init_complex(-2, -2);
 	f->max.re = 2;
 	f->max.im = f->min.im + (f->max.re - f->min.re) * HEIGHT / WIDTH;
-	f->fact.re = (f->max.re - f->min.re) / (WIDTH - 1);
-	f->fact.im = (f->max.im - f->min.im) / (HEIGHT - 1);
+//	f->fact.re = (f->max.re - f->min.re) / (WIDTH - 1);
+//	f->fact.im = (f->max.im - f->min.im) / (HEIGHT - 1);
 	f->max_iter = ITER;
-	f->k = init_complex(1, 1.5);
+	f->k = init_complex(-0.4, 0.6);
 }
 
 void	draw_point(t_fractol *f, int x, int y, int iter)
@@ -48,9 +48,9 @@ void	draw_point(t_fractol *f, int x, int y, int iter)
 
 
 //		int color;
-//
+
 //		color = 0xffffff;
-//
+//		color = (int)((double)color * t);
 //		f->data_addr[i] = color;
 //		f->data_addr[++i] = color >> 8;
 //		f->data_addr[++i] = color >> 16;
@@ -82,6 +82,8 @@ void			draw_map(t_fractol *f)
 
 void			draw(t_fractol *f)
 {
+	f->fact.re = (f->max.re - f->min.re) / (WIDTH - 1);
+	f->fact.im = (f->max.im - f->min.im) / (HEIGHT - 1);
 
 	draw_map(f);
 	mlx_put_image_to_window(f->mlx_ptr, f->win_ptr, f->img_ptr, 0, 0);
