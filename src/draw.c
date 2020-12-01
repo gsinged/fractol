@@ -30,20 +30,54 @@ void			init_init(t_fractol *f)
 //	f->k = init_complex(-0.75, 0.25);
 }
 
-void	draw_point(t_fractol *f, int x, int y, int iter)
+t_color			get_color(t_fractol *f, int iter)
+{
+	double		t;
+	t_color		color;
+	int			c;
+
+	t = (double) iter / (double) f->max_iter;
+	ft_bzero(&color, sizeof(t_color));
+	if (f->color == 0)
+	{
+		color.r = (int)(9 * (1 - t) * pow(t, 3) * 255);
+		color.g = (int)(15 * pow((1 - t), 2) * pow(t, 2) * 255);
+		color.b = (int)(8.5 * pow((1 - t), 3) * t * 255);
+	}
+	else if (f->color == 1)
+	{
+		c = (int)((double)(0xffffff) * (int)t);
+		color.r = c >> 16;
+		color.g = c >> 8;
+		color.b = c;
+	}
+	else if (f->color == 2)
+	{
+		c = (int)((double)(0xffffff) * (1 - t));
+//		ft_printf("iter = %d, c = %d\n", iter, c);
+		color.r = c >> 16;
+		color.g = c >> 8;
+		color.b = c;
+	}
+
+//	ft_printf("setup_color %d\n", f->color);
+	return (color);
+}
+
+void			draw_point(t_fractol *f, int x, int y, t_color color)
 {
 	int		i;
-	double	t;
+//	double	t;
 
-	t = (double)iter / (double)f->max_iter;
 	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
 	{
 		i = (x * f->bits_per_pixel / 8) + (y * f->size_line);
-		f->data_addr[i] = (int)(8.5 * pow((1 - t), 3) * t * 255);
-		f->data_addr[++i] = (int)(15 * pow((1 - t), 2) * pow(t, 2)  * 255);
-		f->data_addr[++i] = (int)(9 * (1 - t) * pow(t, 3) * 255);
+		f->data_addr[i] = color.b;
+		f->data_addr[++i] = color.g;
+		f->data_addr[++i] = color.r;
 		f->data_addr[++i] = 0;
 
+//		ft_printf("#RGB %d %d %d\n", color.r, color.g, color.b);
 
 //		int color;
 //
@@ -72,7 +106,7 @@ void			draw_map(t_fractol *f)
 		{
 			f->c.re = f->min.re + x * f->fact.re;
 			iter = f->fractal(f);
-			draw_point(f, x, y, iter);
+			draw_point(f, x, y, get_color(f, iter));
 			x++;
 		}
 		y++;

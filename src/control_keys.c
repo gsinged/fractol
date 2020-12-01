@@ -46,6 +46,17 @@ void		ft_move(int key, t_fractol *f)
 	draw(f);
 }
 
+void			change_color(int key, t_fractol *f)
+{
+	if (key == KEY_NUM_1)
+		f->color = 0;
+	else if (key == KEY_NUM_2)
+		f->color = 1;
+	else if (key == KEY_NUM_3)
+		f->color = 2;
+	draw(f);
+}
+
 int				press_key(int key, t_fractol *f)
 {
 	ft_printf("%d\n", key);
@@ -54,6 +65,8 @@ int				press_key(int key, t_fractol *f)
 	else if (key == KEY_UP || key == KEY_DOWN || key == KEY_LEFT || \
 										key == KEY_RIGHT)
 		ft_move(key, f);
+	else if (key >= KEY_NUM_1 || key <= KEY_NUM_3)
+		change_color(key, f);
 	return (0);
 }
 

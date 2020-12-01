@@ -13,6 +13,10 @@
 #ifndef KEYS_H
 # define KEYS_H
 
+# define KEY_NUM_1 18
+# define KEY_NUM_2 19
+# define KEY_NUM_3 20
+# define KEY_NUM_4 21
 # define KEY_UP 126
 # define KEY_DOWN 125
 # define KEY_LEFT 123

@@ -17,7 +17,7 @@ void				check_name(t_fractol *f)
 	if (!(ft_strcmp(f->name, "Julia")))
 	{
 		f->fractal = fract_julia;
-		f->julia = 2;
+		f->julia = 1;
 		f->k = init_complex(-0.75, 0.25);
 	}
 	else if (!(ft_strcmp(f->name, "Mandelbrot")))

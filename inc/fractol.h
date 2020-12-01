@@ -42,12 +42,20 @@ typedef struct	s_complex
 	double		im;
 }				t_complex;
 
+typedef struct	s_color
+{
+	int		r;
+	int		g;
+	int 	b;
+}				t_color;
+
 typedef struct	s_fractol {
 	int			height;
 	int			width;
 	char		*name;
 	t_mouse		mouse;
 	int			julia;
+	int 		color;
 	int			zoom;
 	int			x_shift;
 	int			y_shift;
