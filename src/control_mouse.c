@@ -18,6 +18,7 @@ int			motion_hook(int x, int y, t_fractol *f)
 	t_complex	c_prev;
 
 	ft_printf("x = %d, y = %d\n", x, y);
+	ft_printf("f->julia = %d\n", f->julia);
 	if (f->julia == 1)
 	{
 		f->k.im = f->max.im - y * f->fact.im;
@@ -25,10 +26,10 @@ int			motion_hook(int x, int y, t_fractol *f)
 	}
 	else if (f->mouse.on)
 	{
-		c.im = f->max.im - y * f->fact.im;
 		c.re = f->min.re + x * f->fact.re;
-		c_prev.im = f->max.im - f->mouse.y * f->fact.im;
+		c.im = f->max.im - y * f->fact.im;
 		c_prev.re = f->min.re + f->mouse.x * f->fact.re;
+		c_prev.im = f->max.im - f->mouse.y * f->fact.im;
 		f->min.re += c_prev.re - c.re;
 		f->min.im += c_prev.im - c.im;
 		f->max.re += c_prev.re - c.re;
@@ -50,12 +51,14 @@ void			print_min_max(t_fractol *f)
 void			zoom(int mouse, int x, int y, t_fractol *f)
 {
 	double		z;
+	t_complex	c;
 
 	print_min_max(f);
+	c.re = f->min.re + x * f->fact.re;
+	c.im = f->max.im - y * f->fact.im;
+	z = 0.1;
 	if (mouse == MOUSE_UP)
 		z = -0.1;
-	else
-		z = 0.1;
 	f->min.re += f->min.re * z;
 	f->min.im += f->min.im * z;
 	f->max.re += f->max.re * z;
@@ -65,24 +68,6 @@ void			zoom(int mouse, int x, int y, t_fractol *f)
 	draw(f);
 }
 
-//void		move_mouse(int mouse, int x, int y, t_fractol *f)
-//{
-//
-//}
-
-int			deal_mouse(int mouse, int x, int y, t_fractol *f)
-{
-	if (mouse == MOUSE_2)
-	{
-		if (f->julia == 1)
-			f->julia = 2;
-		else if (f->julia == 2)
-			f->julia = 1;
-	}
-	x = y;
-	return (0);
-}
-
 int			mouse_press(int mouse, int x, int y, t_fractol *f)
 {
 	ft_printf("%d\n", mouse);
@@ -90,6 +75,13 @@ int			mouse_press(int mouse, int x, int y, t_fractol *f)
 		zoom(mouse, x, y, f);
 	else if (mouse == MOUSE_1)
 		f->mouse.on = 1;
+	else if (mouse == MOUSE_2)
+	{
+		if (f->julia == 1)
+			f->julia = 2;
+		else if (f->julia == 2)
+			f->julia = 1;
+	}
 	return (0);
 }
 

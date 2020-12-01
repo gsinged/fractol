@@ -46,30 +46,16 @@ void		ft_move(int key, t_fractol *f)
 	draw(f);
 }
 
-int				deal_key(int key, t_fractol *f)
-{
-	if (key == KEY_ESC)
-		ft_exit(f);
-//	else if (key == KEY_UP || key == KEY_DOWN || key == KEY_LEFT || \
-//										key == KEY_RIGHT)
-//		ft_move(key, f);
-//	else if (key == KEY_I || key == KEY_P)
-//		ft_change_projection(key, f);
-//	if (key == KEY_PLUS || key == KEY_MINUS)
-//		ft_scale(key, f);
-	return (0);
-}
-
 int				press_key(int key, t_fractol *f)
 {
 	ft_printf("%d\n", key);
-	if (key == KEY_UP || key == KEY_DOWN || key == KEY_LEFT || \
+	if (key == KEY_ESC)
+		ft_exit(f);
+	else if (key == KEY_UP || key == KEY_DOWN || key == KEY_LEFT || \
 										key == KEY_RIGHT)
 		ft_move(key, f);
 	return (0);
 }
-
-
 
 int			exit_hook(t_fractol *f)
 {
@@ -78,8 +64,6 @@ int			exit_hook(t_fractol *f)
 	return (0);
 }
 
-
-
 void		control_keys(t_fractol *f)
 {
 	mlx_hook(f->win_ptr, 2, 0, press_key, f);
@@ -87,7 +71,4 @@ void		control_keys(t_fractol *f)
 	mlx_hook(f->win_ptr, 5, 0, mouse_release_hook, f);
 	mlx_hook(f->win_ptr, 6, 0, motion_hook, f);
 	mlx_hook(f->win_ptr, 17, 0, exit_hook, f);
-	mlx_key_hook(f->win_ptr, deal_key, f);
-//	mlx_mouse_hook(f->win_ptr, deal_mouse, f);
 }
-
