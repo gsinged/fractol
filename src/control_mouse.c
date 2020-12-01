@@ -53,18 +53,17 @@ void			zoom(int mouse, int x, int y, t_fractol *f)
 	double		z;
 	t_complex	c;
 
-	print_min_max(f);
+//	print_min_max(f);
 	c.re = f->min.re + x * f->fact.re;
 	c.im = f->max.im - y * f->fact.im;
-	z = 0.1;
+	z = -1.1;
 	if (mouse == MOUSE_UP)
-		z = -0.1;
-	f->min.re += f->min.re * z;
-	f->min.im += f->min.im * z;
-	f->max.re += f->max.re * z;
-	f->max.im += f->max.im * z;
-	x = y;
-	print_min_max(f);
+		z = -0.9;
+	f->min.re = c.re + (c.re - f->min.re) * z;
+	f->min.im = c.im + (c.im - f->min.im) * z;
+	f->max.re = c.re + (c.re - f->max.re) * z;
+	f->max.im = c.im + (c.im - f->max.im) * z;
+//	print_min_max(f);
 	draw(f);
 }
 
