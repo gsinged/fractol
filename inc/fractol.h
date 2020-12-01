@@ -77,7 +77,10 @@ void			draw_map(t_fractol *f);
 
 int 			fract_julia(t_fractol *f);
 int 			fract_mandelbrot(t_fractol *f);
-int				fract_mandelbrot8(t_fractol *f);
+int				fract_julia4(t_fractol *f);
+int				fract_mandelbrot4(t_fractol *f);
+int				fract_mandelbar(t_fractol *f);
+int				fract_celtic_mandelbar(t_fractol *f);
 
 void			draw(t_fractol *f);
 void			control_keys(t_fractol *f);

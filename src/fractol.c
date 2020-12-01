@@ -18,14 +18,22 @@ void				check_name(t_fractol *f)
 	{
 		f->fractal = fract_julia;
 		f->julia = 2;
+		f->k = init_complex(-0.75, 0.25);
 	}
 	else if (!(ft_strcmp(f->name, "Mandelbrot")))
 		f->fractal = fract_mandelbrot;
-	else if (!(ft_strcmp(f->name, "Mandelbrot8")))
+	else if (!(ft_strcmp(f->name, "Julia4")))
 	{
-		f->fractal = fract_mandelbrot8;
+		f->fractal = fract_julia4;
 		f->julia = 2;
+		f->k = init_complex(-0.41, -0.58);
 	}
+	else if (!(ft_strcmp(f->name, "Mandelbrot4")))
+		f->fractal = fract_mandelbrot4;
+	else if (!(ft_strcmp(f->name, "Mandelbar")))
+		f->fractal = fract_mandelbar;
+	else if (!(ft_strcmp(f->name, "Celtic_Mandelbar")))
+		f->fractal = fract_celtic_mandelbar;
 }
 
 void		init_fractol(t_fractol *f, char *name)

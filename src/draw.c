@@ -27,7 +27,7 @@ void			init_init(t_fractol *f)
 	f->max.re = 2;
 	f->max.im = f->min.im + (f->max.re - f->min.re) * HEIGHT / WIDTH;
 	f->max_iter = ITER;
-	f->k = init_complex(-0.75, 0.25);
+//	f->k = init_complex(-0.75, 0.25);
 }
 
 void	draw_point(t_fractol *f, int x, int y, int iter)
@@ -46,7 +46,8 @@ void	draw_point(t_fractol *f, int x, int y, int iter)
 
 
 //		int color;
-
+//
+//		t = 1 - t;
 //		color = 0xffffff;
 //		color = (int)((double)color * t);
 //		f->data_addr[i] = color;
