@@ -27,7 +27,7 @@
 # define HEIGHT 1000
 # define MENU_WIDTH 300
 # define ZOOM 40
-# define ITER 50
+# define ITER 100
 
 typedef struct	s_mouse
 {
@@ -77,6 +77,7 @@ void			draw_map(t_fractol *f);
 
 int 			fract_julia(t_fractol *f);
 int 			fract_mandelbrot(t_fractol *f);
+int				fract_mandelbrot8(t_fractol *f);
 
 void			draw(t_fractol *f);
 void			control_keys(t_fractol *f);
@@ -86,6 +87,8 @@ int				motion_hook(int x, int y, t_fractol *f);
 
 void			ft_printerror_mlx(t_fractol *f);
 void			print_error(void);
+
+void			print_min_max(t_fractol *f);
 
 
 #endif

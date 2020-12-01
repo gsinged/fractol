@@ -21,13 +21,15 @@ void				check_name(t_fractol *f)
 	}
 	else if (!(ft_strcmp(f->name, "Mandelbrot")))
 		f->fractal = fract_mandelbrot;
+	else if (!(ft_strcmp(f->name, "Mandelbrot8")))
+	{
+		f->fractal = fract_mandelbrot8;
+		f->julia = 2;
+	}
 }
 
 void		init_fractol(t_fractol *f, char *name)
 {
-//	f->zoom = ZOOM;
-//	f->x_shift = (WIDTH - f->width * f->zoom + MENU_WIDTH) / 2;
-//	f->y_shift = (HEIGHT - f->height * f->zoom) / 2;
 	if (!(f->mlx_ptr = mlx_init()))
 		ft_printerror_mlx(f);
 	if (!(f->win_ptr = mlx_new_window(f->mlx_ptr, WIDTH, HEIGHT, name)))
@@ -40,8 +42,6 @@ void		init_fractol(t_fractol *f, char *name)
 	f->name = name;
 	check_name(f);
 }
-
-
 
 t_fractol		*ft_fractol_new(void)
 {

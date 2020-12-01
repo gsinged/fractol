@@ -21,8 +21,9 @@ int 			fract_julia(t_fractol *f)
 	z = init_complex(f->c.re, f->c.im);
 	while ((pow(z.re, 2) + pow(z.im, 2) <= 4) && iter < f->max_iter)
 	{
-		z.re = pow(z.re, 2) - pow(z.im, 2) + f->k.re;
-		z.im = 2 * z.re * z.im + f->k.im;
+		z = init_complex(
+				pow(z.re, 2) - pow(z.im, 2) + f->k.re,
+				2 * z.re * z.im + f->k.im);
 		iter++;
 	}
 	return (iter);
@@ -37,8 +38,26 @@ int				fract_mandelbrot(t_fractol *f)
 	z = init_complex(f->c.re, f->c.im);
 	while ((pow(z.re, 2) + pow(z.im, 2) <= 4) && iter < f->max_iter)
 	{
-		z.re = pow(z.re, 2) - pow(z.im, 2) + f->c.re;
-		z.im = 2 * z.re * z.im + f->c.im;
+		z = init_complex(
+				pow(z.re, 2) - pow(z.im, 2) + f->c.re,
+				2.0 * z.re * z.im + f->c.im);
+		iter++;
+	}
+	return (iter);
+}
+
+int				fract_mandelbrot8(t_fractol *f)
+{
+	int			iter;
+	t_complex	z;
+
+	iter = 0;
+	z = init_complex(f->c.re, f->c.im);
+	while ((pow(z.re, 2) + pow(z.im, 2) <= 4) && iter < f->max_iter)
+	{
+		z = init_complex(
+				pow(z.re, 4) + pow(z.im, 4) + f->k.re,
+				4 * pow(z.re, 3) * z.im - 4 * z.re * pow(z.im, 3) + f->k.im);
 		iter++;
 	}
 	return (iter);

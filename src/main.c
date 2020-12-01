@@ -25,6 +25,8 @@ int				check_name_main(char *name)
 		return (1);
 	else if (!(ft_strcmp(name, "Mandelbrot")))
 		return (1);
+	else if (!(ft_strcmp(name, "Mandelbrot8")))
+		return (1);
 	return (0);
 }
 

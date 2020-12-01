@@ -19,6 +19,7 @@ int			motion_hook(int x, int y, t_fractol *f)
 
 	ft_printf("x = %d, y = %d\n", x, y);
 	ft_printf("f->julia = %d\n", f->julia);
+	ft_printf("k.re = %lf\nk.im = %lf\n", f->k.re, f->k.im);
 	if (f->julia == 1)
 	{
 		f->k.im = f->max.im - y * f->fact.im;
@@ -41,11 +42,14 @@ int			motion_hook(int x, int y, t_fractol *f)
 	return (0);
 }
 
+#include <stdio.h>
 
 void			print_min_max(t_fractol *f)
 {
-	ft_printf("min.re = %d\nmax.re = %d\n", f->min.re, f->max.re);
-	ft_printf("min.im = %d\nmax.im %d\n\n", f->min.im, f->max.im);
+	printf("min.re = %lf\nmax.re = %lf\n", f->min.re, f->max.re);
+	printf("min.im = %lf\nmax.im %lf\n\n", f->min.im, f->max.im);
+	printf("fact.re = %lf\nfact.im %lf\n\n", f->fact.re, f->fact.im);
+	printf("c.re = %lf\nc.im %lf\n\n", f->c.re, f->c.im);
 }
 
 void			zoom(int mouse, int x, int y, t_fractol *f)

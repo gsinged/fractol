@@ -26,10 +26,8 @@ void			init_init(t_fractol *f)
 	f->min = init_complex(-2, -2);
 	f->max.re = 2;
 	f->max.im = f->min.im + (f->max.re - f->min.re) * HEIGHT / WIDTH;
-//	f->fact.re = (f->max.re - f->min.re) / (WIDTH - 1);
-//	f->fact.im = (f->max.im - f->min.im) / (HEIGHT - 1);
 	f->max_iter = ITER;
-	f->k = init_complex(-0.4, 0.6);
+	f->k = init_complex(-0.75, 0.25);
 }
 
 void	draw_point(t_fractol *f, int x, int y, int iter)
@@ -41,7 +39,7 @@ void	draw_point(t_fractol *f, int x, int y, int iter)
 	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
 	{
 		i = (x * f->bits_per_pixel / 8) + (y * f->size_line);
-		f->data_addr[i] = (int)(8.5 * pow((1-t), 3) * t * 255);
+		f->data_addr[i] = (int)(8.5 * pow((1 - t), 3) * t * 255);
 		f->data_addr[++i] = (int)(15 * pow((1 - t), 2) * pow(t, 2)  * 255);
 		f->data_addr[++i] = (int)(9 * (1 - t) * pow(t, 3) * 255);
 		f->data_addr[++i] = 0;
@@ -84,7 +82,6 @@ void			draw(t_fractol *f)
 {
 	f->fact.re = (f->max.re - f->min.re) / (WIDTH - 1);
 	f->fact.im = (f->max.im - f->min.im) / (HEIGHT - 1);
-
 	draw_map(f);
 	mlx_put_image_to_window(f->mlx_ptr, f->win_ptr, f->img_ptr, 0, 0);
 	control_keys(f);
