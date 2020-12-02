@@ -68,7 +68,6 @@ void			show_help(t_fractol *f)
 
 int				press_key(int key, t_fractol *f)
 {
-	ft_printf("%d\n", key);
 	if (key == KEY_ESC)
 		ft_exit(f);
 	else if (key == KEY_UP || key == KEY_DOWN || key == KEY_LEFT || \
