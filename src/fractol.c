@@ -12,6 +12,14 @@
 
 #include "fractol.h"
 
+void			init_init(t_fractol *f)
+{
+	f->min = init_complex(-2, -2);
+	f->max.re = 2;
+	f->max.im = f->min.im + (f->max.re - f->min.re) * HEIGHT / WIDTH;
+	f->max_iter = ITER;
+}
+
 void			check_name(t_fractol *f)
 {
 	if (!(ft_strcmp(f->name, "Julia")))

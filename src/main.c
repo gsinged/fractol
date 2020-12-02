@@ -15,7 +15,7 @@
 int			print_usage(void)
 {
 	ft_putendl("usage: ./fractol [Name fractal]");
-	ft_putstr("Name:\tJulia\n\tMandelbrot\n\tJulia4\n\tMandelbrot4\n");
+	ft_putstr("Names:\tJulia\n\tMandelbrot\n\tJulia4\n\tMandelbrot4\n");
 	ft_putstr("\tMandelbar\n\tCeltic_Mandelbar\n\tBurning_Ship\n");
 	return (0);
 }

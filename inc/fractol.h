@@ -81,10 +81,12 @@ int				fract_celtic_mandelbar(t_fractol *f);
 int				fract_burning_ship(t_fractol *f);
 
 void			draw(t_fractol *f);
+void			draw_help(t_fractol *f);
 void			control_keys(t_fractol *f);
 int				mouse_press(int mouse, int x, int y, t_fractol *f);
 int				mouse_release_hook(int mouse, int x, int y, t_fractol *f);
 int				motion_hook(int x, int y, t_fractol *f);
+int				press_key(int key, t_fractol *f);
 
 void			ft_printerror_mlx(t_fractol *f);
 void			print_error(void);
