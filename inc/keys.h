@@ -23,6 +23,7 @@
 # define KEY_RIGHT 124
 # define KEY_MINUS 27
 # define KEY_PLUS 24
+# define KEY_H 4
 # define KEY_C 8
 # define KEY_I 34
 # define KEY_ESC 53

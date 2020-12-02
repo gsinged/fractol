@@ -14,11 +14,11 @@
 
 void			ft_exit(t_fractol *f)
 {
-	f->iso = 0;
-	exit (0);
+	ft_fractol_del(f);
+	exit(0);
 }
 
-void		ft_move(int key, t_fractol *f)
+void			ft_move(int key, t_fractol *f)
 {
 	t_complex	delt;
 
@@ -57,6 +57,15 @@ void			change_color(int key, t_fractol *f)
 	draw(f);
 }
 
+void			show_help(t_fractol *f)
+{
+	if (f->help == 1)
+		f->help = 2;
+	else if (f->help == 0)
+		f->help = 0;
+	draw(f);
+}
+
 int				press_key(int key, t_fractol *f)
 {
 	ft_printf("%d\n", key);
@@ -65,19 +74,21 @@ int				press_key(int key, t_fractol *f)
 	else if (key == KEY_UP || key == KEY_DOWN || key == KEY_LEFT || \
 										key == KEY_RIGHT)
 		ft_move(key, f);
+	else if (key == KEY_H)
+		show_help(f);
 	else if (key >= KEY_NUM_1 || key <= KEY_NUM_3)
 		change_color(key, f);
 	return (0);
 }
 
-int			exit_hook(t_fractol *f)
+int				exit_hook(t_fractol *f)
 {
-	f->iso = 0;
+	ft_fractol_del(f);
 	exit(0);
 	return (0);
 }
 
-void		control_keys(t_fractol *f)
+void			control_keys(t_fractol *f)
 {
 	mlx_hook(f->win_ptr, 2, 0, press_key, f);
 	mlx_hook(f->win_ptr, 4, 0, mouse_press, f);

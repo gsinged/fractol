@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-void				check_name(t_fractol *f)
+void			check_name(t_fractol *f)
 {
 	if (!(ft_strcmp(f->name, "Julia")))
 	{
@@ -34,9 +34,11 @@ void				check_name(t_fractol *f)
 		f->fractal = fract_mandelbar;
 	else if (!(ft_strcmp(f->name, "Celtic_Mandelbar")))
 		f->fractal = fract_celtic_mandelbar;
+	else if (!(ft_strcmp(f->name, "Burning_Ship")))
+		f->fractal = fract_burning_ship;
 }
 
-void		init_fractol(t_fractol *f, char *name)
+void			init_fractol(t_fractol *f, char *name)
 {
 	if (!(f->mlx_ptr = mlx_init()))
 		ft_printerror_mlx(f);
@@ -71,5 +73,6 @@ int				ft_fractol(char *name)
 	init_init(f);
 	draw(f);
 	mlx_loop(f->mlx_ptr);
+	ft_fractol_del(f);
 	return (0);
 }

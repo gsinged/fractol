@@ -17,13 +17,14 @@ int			motion_hook(int x, int y, t_fractol *f)
 	t_complex	c;
 	t_complex	c_prev;
 
-	ft_printf("x = %d, y = %d\n", x, y);
-	ft_printf("f->julia = %d\n", f->julia);
-	ft_printf("k.re = %lf\nk.im = %lf\n", f->k.re, f->k.im);
+//	ft_printf("x = %d, y = %d\n", x, y);
+//	ft_printf("f->julia = %d\n", f->julia);
+//	ft_printf("k.re = %lf\nk.im = %lf\n", f->k.re, f->k.im);
 	if (f->julia == 1)
 	{
 		f->k.im = f->max.im - y * f->fact.im;
 		f->k.re = f->min.re + x * f->fact.re;
+		draw(f);
 	}
 	else if (f->mouse.on)
 	{
@@ -35,10 +36,10 @@ int			motion_hook(int x, int y, t_fractol *f)
 		f->min.im += c_prev.im - c.im;
 		f->max.re += c_prev.re - c.re;
 		f->max.im += c_prev.im - c.im;
+		draw(f);
 	}
 	f->mouse.x = x;
 	f->mouse.y = y;
-	draw(f);
 	return (0);
 }
 
@@ -73,7 +74,7 @@ void			zoom(int mouse, int x, int y, t_fractol *f)
 
 int			mouse_press(int mouse, int x, int y, t_fractol *f)
 {
-	ft_printf("%d\n", mouse);
+//	ft_printf("%d\n", mouse);
 	if (mouse == MOUSE_UP || mouse == MOUSE_DOWN)
 		zoom(mouse, x, y, f);
 	else if (mouse == MOUSE_1)

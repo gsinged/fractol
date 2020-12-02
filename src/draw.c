@@ -27,14 +27,11 @@ void			init_init(t_fractol *f)
 	f->max.re = 2;
 	f->max.im = f->min.im + (f->max.re - f->min.re) * HEIGHT / WIDTH;
 	f->max_iter = ITER;
-//	f->k = init_complex(-0.75, 0.25);
 }
 
-t_color			get_color(t_fractol *f, int iter)
+t_color			get_color(t_fractol *f, int iter, double t, int c)
 {
-	double		t;
 	t_color		color;
-	int			c;
 
 	t = (double) iter / (double) f->max_iter;
 	ft_bzero(&color, sizeof(t_color));
@@ -54,20 +51,44 @@ t_color			get_color(t_fractol *f, int iter)
 	else if (f->color == 2)
 	{
 		c = (int)((double)(0xffffff) * (1 - t));
-//		ft_printf("iter = %d, c = %d\n", iter, c);
 		color.r = c >> 16;
 		color.g = c >> 8;
 		color.b = c;
 	}
-
-//	ft_printf("setup_color %d\n", f->color);
 	return (color);
+}
+
+void			draw_help(t_fractol *f)
+{
+	int	x;
+	int y;
+
+	if (!f->help)
+	{
+		x = 0.4 * WIDTH;
+		y = 0.9 * HEIGHT;
+		mlx_string_put(f->mlx_ptr, f->win_ptr, x, y, 0xff00, "HELP - Press H");
+		f->help = 1;
+	}
+	if (f->help == 2)
+	{
+		x = 0.35 * WIDTH;
+		y = 0.02 * HEIGHT;
+		mlx_string_put(f->mlx_ptr, f->win_ptr, x, y += 25, 0x00ff00,
+					   "Move - Arrows; mouse with LButton");
+		mlx_string_put(f->mlx_ptr, f->win_ptr, x, y += 25, 0x00ff00,
+					   "Zoom - Wheel");
+		mlx_string_put(f->mlx_ptr, f->win_ptr, x, y += 25, 0x00ff00,
+					   "Lock Julia - RButton mouse");
+		mlx_string_put(f->mlx_ptr, f->win_ptr, x, y += 25, 0x00ff00,
+					   "Color setup - 1, 2, 3");
+		f->help = 0;
+	}
 }
 
 void			draw_point(t_fractol *f, int x, int y, t_color color)
 {
 	int		i;
-//	double	t;
 
 	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
 	{
@@ -76,17 +97,6 @@ void			draw_point(t_fractol *f, int x, int y, t_color color)
 		f->data_addr[++i] = color.g;
 		f->data_addr[++i] = color.r;
 		f->data_addr[++i] = 0;
-
-//		ft_printf("#RGB %d %d %d\n", color.r, color.g, color.b);
-
-//		int color;
-//
-//		t = 1 - t;
-//		color = 0xffffff;
-//		color = (int)((double)color * t);
-//		f->data_addr[i] = color;
-//		f->data_addr[++i] = color >> 8;
-//		f->data_addr[++i] = color >> 16;
 	}
 }
 
@@ -106,7 +116,7 @@ void			draw_map(t_fractol *f)
 		{
 			f->c.re = f->min.re + x * f->fact.re;
 			iter = f->fractal(f);
-			draw_point(f, x, y, get_color(f, iter));
+			draw_point(f, x, y, get_color(f, iter, 0, 0));
 			x++;
 		}
 		y++;
@@ -119,5 +129,6 @@ void			draw(t_fractol *f)
 	f->fact.im = (f->max.im - f->min.im) / (HEIGHT - 1);
 	draw_map(f);
 	mlx_put_image_to_window(f->mlx_ptr, f->win_ptr, f->img_ptr, 0, 0);
+	draw_help(f);
 	control_keys(f);
 }

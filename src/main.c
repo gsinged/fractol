@@ -16,11 +16,11 @@ int			print_usage(void)
 {
 	ft_putendl("usage: ./fractol [Name fractal]");
 	ft_putstr("Name:\tJulia\n\tMandelbrot\n\tJulia4\n\tMandelbrot4\n");
-	ft_putstr("\tMandelbar\n\tCeltic_Mandelbar\n");
+	ft_putstr("\tMandelbar\n\tCeltic_Mandelbar\n\tBurning_Ship\n");
 	return (0);
 }
 
-int				check_name_main(char *name)
+int			check_name_main(char *name)
 {
 	if (!(ft_strcmp(name, "Julia")))
 		return (1);
@@ -34,7 +34,18 @@ int				check_name_main(char *name)
 		return (1);
 	else if (!(ft_strcmp(name, "Celtic_Mandelbar")))
 		return (1);
+	else if (!(ft_strcmp(name, "Burning_Ship")))
+		return (1);
 	return (0);
+}
+
+void		ft_fractol_del(t_fractol *f)
+{
+	if (f)
+	{
+		ft_bzero(f, sizeof(t_fractol));
+		free(f);
+	}
 }
 
 int			main(int argc, char **argv)
